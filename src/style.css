@@ -83,7 +83,7 @@ body {
 }
 
 footer {
-  padding: var(--spacing-6) var(--spacing-0);
+  padding: var(--spacing-4) var(--spacing-0);
 }
 
 hr {
@@ -240,13 +240,19 @@ a:focus {
 /* Custom classes */
 
 .global-wrapper {
-  margin: var(--spacing-0) auto;
+  display: flex;
   max-width: var(--maxWidth-wrapper);
-  padding: var(--spacing-10) var(--spacing-5);
+  min-height: 100vh;
+  flex-flow: column;
+  margin: var(--spacing-0) auto;
+  padding: var(--spacing-5) var(--spacing-4) var(--spacing-0);
+}
+.global-wrapper > main {
+  flex: 1;
 }
 
 .global-wrapper[data-is-root-path='true'] .bio {
-  margin-bottom: var(--spacing-20);
+  margin-bottom: var(--spacing-12);
 }
 
 .global-header {
@@ -287,7 +293,7 @@ a:focus {
 
 .bio {
   display: flex;
-  margin-bottom: var(--spacing-16);
+  margin-bottom: var(--spacing-12);
 }
 
 .bio p {
