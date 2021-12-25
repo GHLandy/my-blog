@@ -4,6 +4,7 @@ module.exports = {
     author: {
       name: `GHLandy`,
       summary: `一枚小小的 WEB 前端开发攻城狮`,
+      github: `GHLandy`,
     },
     description: `GHLandy's Blog, `,
     siteUrl: `https://ghlandy.com/`,
