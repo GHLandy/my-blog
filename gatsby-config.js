@@ -3,7 +3,7 @@ module.exports = {
     title: `GHLandy's Blog`,
     author: {
       name: `GHLandy`,
-      summary: `一枚小小的 WEB 前端开发攻城狮`,
+      summary: `前端开发攻城狮 | 愿初识如故归，我有粗茶几杯，可否说说你的故事`,
       github: `GHLandy`,
     },
     description: `GHLandy's Blog, `,

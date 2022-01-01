@@ -1,7 +1,7 @@
 {
   "name": "ghlandy-gatsby-blog",
   "description": "GHLandy's blog powered by Gatsby",
-  "version": "0.o.0",
+  "version": "0.0.0",
   "private": true,
   "author": {
     "name": "GHLandy",
