@@ -1,6 +1,6 @@
 ---
 title: 我的 VS Code
-date: '2022-01-01T09:44:52.580Z'
+date: '2022-01-06T01:57:40.039Z'
 description: 记录一下我 VS Code 的配置
 ---
 
@@ -41,6 +41,68 @@ description: 记录一下我 VS Code 的配置
   "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[vue]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+}
+```
+
+## jsts.code-snippets
+
+> 位置: <br />
+> windows: `%appdata%\Code\User\snippets\jsts.code-snippets` <br />
+> Linux: `~/.config/Code/User/snippets\jsts.code-snippets`
+
+```json
+{
+  // Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  "Import Module": {
+    "scope": "javascript, typescript",
+    "prefix": "import-module",
+    "body": ["import module from '${1:module}';"],
+    "description": "Import Module"
+  },
+  "Try Catch": {
+    "scope": "javascript, typescript",
+    "prefix": "try-catch",
+    "body": [
+      "try {",
+      "\t${2:// TODO: Coding}",
+      "} catch (err) {",
+      "\tthrow new Error(err);",
+      "}"
+    ],
+    "description": "try catch"
+  },
+  "Async Method": {
+    "scope": "javascript, typescript",
+    "prefix": "async-method",
+    "body": [
+      "async methodName() {",
+      "\ttry {",
+      "\t\t${1:// TODO: Coding}",
+      "\t} catch (err) {",
+      "\t\tthrow new Error(err);",
+      "\t}",
+      "},"
+    ],
+    "description": "Async Method"
+  },
+  "Async Func": {
+    "scope": "javascript, typescript",
+    "prefix": "async-func",
+    "body": [
+      "async function funcName() {",
+      "\ttry {",
+      "\t\t${1:// TODO: Coding}",
+      "\t} catch (err) {",
+      "\t\tthrow new Error(err);",
+      "\t}",
+      "}"
+    ],
+    "description": "Async Func"
+  }
 }
 ```
 
