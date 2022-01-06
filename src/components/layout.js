@@ -30,7 +30,7 @@ const Layout = ({ location, title, children }) => {
       <main>{children}</main>
 
       <footer>
-        Copyright &copy; {new Date().getFullYear()} &nbsp;
+        Copyright &copy; 2021 - {new Date().getFullYear()} &nbsp;
         <a href="https://github.com/GHLandy">GHLandy</a>, Built with &nbsp;
         <a href="https://www.gatsbyjs.com">Gatsby</a>
       </footer>
