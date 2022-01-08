@@ -69,7 +69,7 @@ reflector -c CN --save /etc/pacman.d/mirrorlist
 ```bash
 pacstrap -i /mnt \
 base base-devel linux linux-firmware bash-completion grub dosfstools efibootmgr lvm2 \
-bluez-utils pulseaudio-bluetooth xdg-user-dir vim git curl openssh  \
+bluez-utils pulseaudio-bluetooth xdg-user-dirs vim git curl openssh  \
 xf86-video-intel xf86-video-nouveau xf86-input-libinput \
 plasma konsole dolphin ark kate okular gwenview networkmanager exfat-utils ntfs-3g \
 fcitx fcitx-im fcitx-configtool \
