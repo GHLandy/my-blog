@@ -16,13 +16,13 @@ description:
 > 剩余的全部给 /home 分区
 
 ```bash
-gdisk /dev/sda
+gdisk /dev/nvme0n1
 
-mkfs.fat -F 32 /dev/sda1
+mkfs.fat -F 32 /dev/nvme0n1p1
 fatlabel /dev/sda1 ESP
 
-cryptsetup luksFormat /dev/sda2
-cryptsetup open /dev/sda2 archlvm # archlvm 可随意，使用时保持一致即可
+cryptsetup luksFormat /dev/nvme0n1p2
+cryptsetup open /dev/nvme0n1p2 archlvm # archlvm 可随意，使用时保持一致即可
 
 pvcreate /dev/mapper/archlvm
 vgcreate ArchGroup /dev/mapper/archlvm # ArchGroup 可随意，使用时保持一致即可
@@ -38,8 +38,8 @@ mkswap -L SWAP /dev/mapper/ArchGroup-swap
 mount /dev/mapper/ArchGroup-root /mnt
 mkdir /mnt/home /mnt/boot
 
-mount dev/mapper/ArchGroup-home /mnt/home
-mount /dev/sda1 /mnt/boot
+mount /dev/mapper/ArchGroup-home /mnt/home
+mount /dev/nvme0n1p1 /mnt/boot
 swapon /dev/mapper/ArchGroup-swap
 ```
 
@@ -48,7 +48,7 @@ swapon /dev/mapper/ArchGroup-swap
 > 通过 reflector 选择中国镜像源
 
 ```bash
-reflector -c CN --save /etc/pacman.d/mirrorlist
+reflector -c CN -f 10 --save /etc/pacman.d/mirrorlist
 ```
 
 ## 3、安装系统
@@ -68,11 +68,13 @@ reflector -c CN --save /etc/pacman.d/mirrorlist
 
 ```bash
 pacstrap -i /mnt \
-base base-devel linux linux-firmware bash-completion grub dosfstools efibootmgr lvm2 \
-bluez-utils pulseaudio-bluetooth xdg-user-dirs vim git curl openssh  \
+base base-devel linux-lts linux-lts-headers linux-firmware grub dosfstools efibootmgr lvm2 \
+bash-completion vim git curl openssh man-db man-pages \
+networkmanager networkmanager-openvpn exfat-utils ntfs-3g bluez-utils pulseaudio-bluetooth \
 xf86-video-intel xf86-video-nouveau xf86-input-libinput \
-plasma konsole dolphin ark kate okular gwenview networkmanager exfat-utils ntfs-3g \
-fcitx fcitx-im fcitx-configtool \
+plasma konsole dolphin kate okular gwenview \
+ark p7zip unrar unarchiver \
+fcitx5-im fcitx5-chinese-addons \
 ttf-dejavu ttf-liberation \
 adobe-source-code-pro-fonts \
 adobe-source-sans-pro-fonts \
@@ -147,7 +149,7 @@ systemctl enable NetworkManager
 
 ```bash
 passwd root # 设置 root 密码
-useradd -mG wheel ghlandy # 添加 ghlandy 用户，并将其加入 wheel 组
+useradd -m ghlandy # 添加新用户
 passwd ghlandy
 ```
 
@@ -166,11 +168,11 @@ mkinitcpio -P
 ```
 
 ```bash
-# 编辑 /etc/default/grub
-vim /etc/default/grub
-
 # 查看加密分区的 UUID
 blkid
+
+# 编辑 /etc/default/grub
+vim /etc/default/grub
 
 # 添加并替换 device-UUID
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=device-UUID:archlvm root=/dev/ArchGroup/root"
@@ -179,8 +181,7 @@ GRUB_CMDLINE_LINUX="cryptdevice=UUID=device-UUID:archlvm root=/dev/ArchGroup/roo
 grub 安装及启动菜单
 
 ```bash
-grub-install --target=x86_64-efi --efi-directory=/boot \
---bootloader-id="Arch Linux Grub Bootloader" --recheck --debug
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id="Arch Linux" --recheck --debug
 
 # 下载 grub 主题
 git clone https://github.com/gustawho/grub2-theme-breeze.git
@@ -189,22 +190,30 @@ vim /etc/default/grub
 # 设置 grub 主题
 GRUB_THEME="/boot/grub/themes/breeze/theme.txt"
 
+# 生成 GRUB 菜单密码 (如 qwer1234)
+grub-mkpasswd-pbkdf2
+PBKDF2 hash of your password is grub.pbkdf2.sha512.10000.55B982FA18876B07A6C637ABBEDFD172C75061A6AD1B9E6BAFEE1EF1D41E5DC3017AE885CE0BA0786A87C4FBF21F17A1B1D54B033D851C4B290290D8322F0CFC.05DB77C69A28B0989E5B5235B28261EE7C83F486094DCF97F64EBD353CCAD5C5C1DAE03419D39D0D5B20DDFC930B6AFE3AB2177B5C7F341CC5CB23C0458D6386
+
+# 设置 GRUB 密码
+vim /etc/grub.d/40_custom
+# 粘贴如下内容 输入并确认密码 如 qwer1234 (届时选择 grub 菜单后需要输入用户密码密码，如用户名 user 密码 qwer1234)
+# set superusers=user
+# password_pbkdf2 user grub.pbkdf2.sha512.10000.55B982FA18876B07A6C637ABBEDFD172C75061A6AD1B9E6BAFEE1EF1D41E5DC3017AE885CE0BA0786A87C4FBF21F17A1B1D54B033D851C4B290290D8322F0CFC.05DB77C69A28B0989E5B5235B28261EE7C83F486094DCF97F64EBD353CCAD5C5C1DAE03419D39D0D5B20DDFC930B6AFE3AB2177B5C7F341CC5CB23C0458D6386
+
+
 # 生成 grub 启动菜单
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 `--efi-directory` 指向 EFI 分区挂载的位置，前面我们挂载到 `/boot`，`--bootloader-id` 是在进入 `BIOS`
-时显示的名称，这里设置为 `Arch Linux Grub Bootloader`。
+时显示的名称，这里设置为 `Arch Linux`。
 
 ### g. 设置输入法 (fcitx)
 
-比如我们待会儿用 `ghlandy` 用户登录到桌面环境，则需要在该用户家目录下建立 `.pam_environment`，并输入一下内容：
-
 ```bash
-touch /home/ghlandy/.pam_environment
-chown ghlandy:ghlandy /home/ghlandy/.pam_environment
-vim /home/ghlandy/.pam_environment
+vim /etc/environment
 
+# 添加如下内容
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fictx
@@ -221,7 +230,7 @@ vim /etc/sddm.conf.d/default.conf
 Current=breeze
 
 # 开机启动 sddm
-systemctl enbale sddm
+systemctl enable sddm
 ```
 
 ## 7、重启

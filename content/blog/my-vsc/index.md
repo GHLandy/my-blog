@@ -57,51 +57,59 @@ description: 记录一下我 VS Code 的配置
   // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
   // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
   // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
-  "Import Module": {
-    "scope": "javascript, typescript",
-    "prefix": "import-module",
-    "body": ["import module from '${1:module}';"],
-    "description": "Import Module"
-  },
-  "Try Catch": {
-    "scope": "javascript, typescript",
+  "try catch": {
+    "scope": "javascript, javascriptreact, typescript, typescriptreact",
     "prefix": "try-catch",
     "body": [
       "try {",
-      "\t${2:// TODO: Coding}",
+      "\t${1:// TODO: Coding}",
       "} catch (err) {",
-      "\tthrow new Error(err);",
+      "\tthrow err;",
       "}"
     ],
     "description": "try catch"
   },
-  "Async Method": {
-    "scope": "javascript, typescript",
+  "async func": {
+    "scope": "javascript, javascriptreact, typescript, typescriptreact",
+    "prefix": "async-func",
+    "body": [
+      "async function func() {",
+      "\ttry {",
+      "\t\t${1:// TODO: Coding}",
+      "\t} catch (err) {",
+      "\t\tthrow err;",
+      "\t}",
+      "}"
+    ],
+    "description": "async func"
+  },
+  "async arrow func": {
+    "scope": "javascript, javascriptreact, typescript, typescriptreact",
+    "prefix": "async-arrow-func",
+    "body": [
+      "async () => {",
+      "\ttry {",
+      "\t\t${1:// TODO: Coding}",
+      "\t} catch (err) {",
+      "\t\tthrow err;",
+      "\t}",
+      "}"
+    ],
+    "description": "async arrow func"
+  },
+  "async method": {
+    "scope": "javascript, javascriptreact, typescript, typescriptreact",
     "prefix": "async-method",
     "body": [
       "async methodName() {",
       "\ttry {",
       "\t\t${1:// TODO: Coding}",
       "\t} catch (err) {",
-      "\t\tthrow new Error(err);",
+      "\t\tthrow err;",
       "\t}",
       "},"
     ],
-    "description": "Async Method"
-  },
-  "Async Func": {
-    "scope": "javascript, typescript",
-    "prefix": "async-func",
-    "body": [
-      "async function funcName() {",
-      "\ttry {",
-      "\t\t${1:// TODO: Coding}",
-      "\t} catch (err) {",
-      "\t\tthrow new Error(err);",
-      "\t}",
-      "}"
-    ],
-    "description": "Async Func"
+    "description": "async method"
   }
 }
 ```
