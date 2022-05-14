@@ -84,7 +84,8 @@ adobe-source-han-sans-otc-fonts \
 adobe-source-han-sans-tw-fonts \
 adobe-source-han-serif-cn-fonts \
 adobe-source-han-serif-otc-fonts \
-adobe-source-han-serif-tw-fonts
+adobe-source-han-serif-tw-fonts \
+noto-fonts-cjk noto-fonts-emoji
 ```
 
 ## 4、生成 fstab 文件
@@ -128,8 +129,7 @@ echo LC_CTYPE=zh_CN.UTF-8 >> /etc/locale.conf
 ### b. timezone (时区设置)
 
 ```bash
-# 如果已经存在 /etc/localtime，创建链接会报错，先删除即可
-rm /etc/localtime
+# 如果已经存在 /etc/localtime，创建链接会报错，先删除即可 rm /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 
