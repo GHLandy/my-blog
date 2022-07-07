@@ -12,22 +12,6 @@ description: 记录一下我 VS Code 的配置
 
 ```json
 {
-  "diffEditor.renderSideBySide": false,
-  "editor.fontFamily": "Menlo, Consolas, DejaVu Sans Mono, monospace",
-  "editor.fontSize": 14,
-  "editor.multiCursorModifier": "alt",
-  "editor.renderIndentGuides": true,
-  "editor.renderWhitespace": "all",
-  "editor.rulers": [80, 100, 120],
-  "editor.tabSize": 2,
-  "editor.wordWrap": "bounded",
-  "editor.wordWrapColumn": 100,
-  "files.eol": "\n",
-  "window.menuBarVisibility": "toggle",
-  "window.zoomLevel": 1,
-  "workbench.colorTheme": "Atom Material Theme",
-  "workbench.iconTheme": "file-icons",
-  "workbench.sideBar.location": "left",
   "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -40,8 +24,29 @@ description: 记录一下我 VS Code 的配置
   "[scss]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[vue]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+  "[vue]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "diffEditor.renderSideBySide": false,
+  "editor.fontFamily": "Menlo, Consolas, DejaVu Sans Mono, monospace",
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.guides.indentation": true,
+  "editor.multiCursorModifier": "alt",
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [80, 100, 120],
+  "editor.tabSize": 2,
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 100,
+  "explorer.confirmDragAndDrop": false,
+  "files.eol": "\n",
+  "git.suggestSmartCommit": false,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "window.titleBarStyle": "custom",
+  "window.zoomLevel": 0.8,
+  "workbench.colorTheme": "Atom Material Theme",
+  "workbench.iconTheme": "file-icons",
+  "workbench.sideBar.location": "left"
 }
+
 ```
 
 ## jsts.code-snippets
@@ -64,7 +69,9 @@ description: 记录一下我 VS Code 的配置
       "try {",
       "\t${1:// TODO: Coding}",
       "} catch (err) {",
-      "\tthrow err;",
+      "\tthrow new Error(err);",
+      "} finally {",
+      "\t${2:// TODO: Coding}",
       "}"
     ],
     "description": "try catch"
@@ -77,7 +84,9 @@ description: 记录一下我 VS Code 的配置
       "\ttry {",
       "\t\t${1:// TODO: Coding}",
       "\t} catch (err) {",
-      "\t\tthrow err;",
+      "\t\tthrow new Error(err);",
+      "\t} finally {",
+      "\t\t${2:// TODO: Coding}",
       "\t}",
       "}"
     ],
@@ -91,7 +100,9 @@ description: 记录一下我 VS Code 的配置
       "\ttry {",
       "\t\t${1:// TODO: Coding}",
       "\t} catch (err) {",
-      "\t\tthrow err;",
+      "\t\tthrow new Error(err);",
+      "\t} finally {",
+      "\t\t${2:// TODO: Coding}",
       "\t}",
       "}"
     ],
@@ -101,11 +112,13 @@ description: 记录一下我 VS Code 的配置
     "scope": "javascript, javascriptreact, typescript, typescriptreact",
     "prefix": "async-method",
     "body": [
-      "async methodName() {",
+      "async method() {",
       "\ttry {",
       "\t\t${1:// TODO: Coding}",
       "\t} catch (err) {",
-      "\t\tthrow err;",
+      "\t\tthrow new Error(err);",
+      "\t} finally {",
+      "\t\t${2:// TODO: Coding}",
       "\t}",
       "},"
     ],
