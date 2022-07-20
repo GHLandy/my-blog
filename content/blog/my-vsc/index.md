@@ -42,11 +42,10 @@ description: 记录一下我 VS Code 的配置
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "window.titleBarStyle": "custom",
   "window.zoomLevel": 0.8,
-  "workbench.colorTheme": "Atom Material Theme",
+  "workbench.colorTheme": "Solarized Dark",
   "workbench.iconTheme": "file-icons",
   "workbench.sideBar.location": "left"
 }
-
 ```
 
 ## jsts.code-snippets
