@@ -11,7 +11,6 @@ description: 记录一下我 VS Code 的配置
 > Linux: `~/.config/Code/User/settings.json`
 
 ```json
-{
   "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -32,7 +31,7 @@ description: 记录一下我 VS Code 的配置
   "editor.guides.indentation": true,
   "editor.multiCursorModifier": "alt",
   "editor.renderWhitespace": "all",
-  "editor.rulers": [80, 100, 120],
+  "editor.rulers": [80, 100],
   "editor.tabSize": 2,
   "editor.wordWrap": "bounded",
   "editor.wordWrapColumn": 100,
@@ -41,11 +40,10 @@ description: 记录一下我 VS Code 的配置
   "git.suggestSmartCommit": false,
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "window.titleBarStyle": "custom",
-  "window.zoomLevel": 0.8,
-  "workbench.colorTheme": "Solarized Dark",
+  "window.zoomLevel": 0.5,
+  "workbench.colorTheme": "Noctis",
   "workbench.iconTheme": "file-icons",
   "workbench.sideBar.location": "left"
-}
 ```
 
 ## jsts.code-snippets
@@ -192,10 +190,9 @@ description: 记录一下我 VS Code 的配置
     "gruntfuggly.todo-tree",
     "irongeek.vscode-env",
     "johnsoncodehk.volar",
+    "liviuschera.noctis",
     "mgmcdermott.vscode-language-babel",
-    "mhutchie.git-graph",
-    "ms-python.python",
-    "tobiasalthoff.atom-material-theme"
+    "mhutchie.git-graph"
   ]
 }
 ```
