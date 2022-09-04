@@ -68,7 +68,7 @@ reflector -c CN -f 10 --save /etc/pacman.d/mirrorlist
 
 ```bash
 pacstrap -i /mnt \
-base base-devel linux-lts linux-lts-headers linux-firmware grub dosfstools efibootmgr lvm2 \
+base base-devel linux linux-headers linux-firmware grub dosfstools efibootmgr lvm2 \
 bash-completion vim git curl openssh man-db man-pages \
 networkmanager networkmanager-openvpn exfat-utils ntfs-3g bluez-utils pulseaudio-bluetooth \
 xf86-video-intel xf86-video-nouveau xf86-input-libinput \
