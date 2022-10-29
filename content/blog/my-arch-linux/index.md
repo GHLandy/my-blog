@@ -85,7 +85,8 @@ adobe-source-han-sans-tw-fonts \
 adobe-source-han-serif-cn-fonts \
 adobe-source-han-serif-otc-fonts \
 adobe-source-han-serif-tw-fonts \
-noto-fonts-cjk noto-fonts-emoji
+noto-fonts-cjk noto-fonts-emoji \
+wqy-microheit wqy-zenhei
 ```
 
 ## 4、生成 fstab 文件
@@ -241,3 +242,15 @@ systemctl enable sddm
 exit
 reboot
 ```
+
+## Misc
+
+> 关于 AUR com.qq.weixin.deepin 输入框中文显示为方框
+>
+> 使用 deepin-wine6-stable regedit 命令打开注册表
+>
+> HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink
+>
+> 新建一个类型为 Multi-String Value，键名 SimSun，值为 wqy-microheit.ttc (记得安装文泉译黑体)
+>
+> 重启微信即可
