@@ -251,6 +251,6 @@ reboot
 >
 > HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink
 >
-> 新建一个类型为 Multi-String Value，键名 SimSun，值为 wqy-microheit.ttc (记得安装文泉译黑体)
+> 把 Lucida Sans Unicode, Microsoft Sans Serif, Tahoma 三条记录中的 SIMSUN.TTC,SimSun 改为 SourceHanSerif-Medium.ttc,SimSun
 >
-> 重启微信即可
+> 关掉注册表，重启微信即可
