@@ -51,3 +51,13 @@ gpg --import D504D18E.sec.asc
 ```bash
 curl https://github.com/web-flow.gpg | gpg --import
 ```
+
+## git 启用 gpg 签名提交时
+
+> 设置 pinentry-program
+
+```bash
+vim ~/.gnupg/gpg-agent.confg
+
+pinentry-program /usr/bin/pinentry-qt
+```
