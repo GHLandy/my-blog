@@ -69,24 +69,19 @@ reflector -c CN -f 10 --save /etc/pacman.d/mirrorlist
 ```bash
 pacstrap -i /mnt \
 base base-devel linux linux-headers linux-firmware grub dosfstools efibootmgr lvm2 \
-bash-completion vim git curl openssh man-db man-pages \
+bash-completion vim git curl openssl openssh man-db man-pages \
 networkmanager networkmanager-openvpn exfat-utils ntfs-3g bluez-utils pulseaudio-bluetooth \
 xf86-video-intel xf86-video-nouveau xf86-input-libinput \
-plasma konsole dolphin kate okular gwenview \
-ark p7zip unrar unarchiver \
+plasma konsole dolphin kdegraphics-thumbnailers qt5-imageformats kate okular gwenview \
+ark p7zip unrar unarchiver kdesvn \
 fcitx5-im fcitx5-chinese-addons \
-ttf-dejavu ttf-liberation \
+ttf-dejavu ttf-liberation noto-fonts-cjk noto-fonts-emoji \
 adobe-source-code-pro-fonts \
-adobe-source-sans-pro-fonts \
-adobe-source-serif-pro-fonts \
-adobe-source-han-sans-cn-fonts \
-adobe-source-han-sans-otc-fonts \
-adobe-source-han-sans-tw-fonts \
-adobe-source-han-serif-cn-fonts \
-adobe-source-han-serif-otc-fonts \
-adobe-source-han-serif-tw-fonts \
-noto-fonts-cjk noto-fonts-emoji \
-wqy-microheit wqy-zenhei
+adobe-source-sans-pro-fonts adobe-source-serif-pro-fonts \
+adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts \
+adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts \
+adobe-source-han-sans-tw-fonts adobe-source-han-serif-tw-fonts \
+wqy-microhei wqy-zenhei
 ```
 
 ## 4、生成 fstab 文件
@@ -130,8 +125,7 @@ echo LC_CTYPE=zh_CN.UTF-8 >> /etc/locale.conf
 ### b. timezone (时区设置)
 
 ```bash
-# 如果已经存在 /etc/localtime，创建链接会报错，先删除即可 rm /etc/localtime
-ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 
 ### c. hostname (主机名设置)
@@ -181,6 +175,9 @@ GRUB_CMDLINE_LINUX="cryptdevice=UUID=device-UUID:archlvm root=/dev/ArchGroup/roo
 
 grub 安装及启动菜单
 
+`--efi-directory` 指向 EFI 分区挂载的位置，前面我们挂载到 `/boot`，`--bootloader-id` 是在进入 `BIOS`
+时显示的名称，这里设置为 `Arch Linux`。
+
 ```bash
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id="Arch Linux" --recheck --debug
 
@@ -205,9 +202,6 @@ vim /etc/grub.d/40_custom
 # 生成 grub 启动菜单
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
-
-`--efi-directory` 指向 EFI 分区挂载的位置，前面我们挂载到 `/boot`，`--bootloader-id` 是在进入 `BIOS`
-时显示的名称，这里设置为 `Arch Linux`。
 
 ### g. 设置输入法 (fcitx)
 
