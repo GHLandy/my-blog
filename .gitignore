@@ -1,3 +1,7 @@
+dist
+dist-ssr
+node_modules
+
 # Editor directories and files
 .idea
 .project
@@ -28,15 +32,20 @@ Thumbs.db
 logs
 *.log
 npm-debug.log*
+pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-.cache
-dist
-node_modules
-public
+# Tests
+/coverage
+/.nyc_output
+
 *.rar
 *.zip
 *.7z
 *.local
+.husky/_
+
+.cache
+public

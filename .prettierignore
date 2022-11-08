@@ -1,4 +1,5 @@
-.cache
 dist
+dist-ssr
 node_modules
-public
+pnpm-lock.yaml
+.cache
