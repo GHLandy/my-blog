@@ -11,9 +11,20 @@ description:
 > `UEFI + GPT` 分区方案 <br />
 > 384M 的 ESP 分区 `/boot` 分区类型为 ef00 <br />
 > LVM on LUKS (剩余的是全部分给 LVM) 分区类型为 8e00 <br />
-> 32G 根分区 / <br />
+> 36G 根分区 / <br />
 > 16G 交换分区 swap <br />
 > 剩余的全部给 /home 分区
+
+```
+NAME                   SIZE TYPE  MOUNTPOINTS
+nvme0n1              465.8G disk
+├─nvme0n1p1            384M part  /boot
+└─nvme0n1p2          465.4G part
+  └─archlvm          465.4G crypt
+    ├─ArchGroup-root    36G lvm   /
+    ├─ArchGroup-swap    16G lvm   [SWAP]
+    └─ArchGroup-home 413.4G lvm   /home
+```
 
 ```bash
 gdisk /dev/nvme0n1
@@ -73,8 +84,7 @@ bash-completion vim git curl openssl openssh man-db man-pages \
 networkmanager networkmanager-openvpn exfat-utils ntfs-3g bluez-utils pulseaudio-bluetooth \
 xf86-video-intel xf86-video-nouveau xf86-input-libinput \
 plasma konsole dolphin kdegraphics-thumbnailers qt5-imageformats kate okular gwenview \
-ark p7zip unrar unarchiver kdesvn \
-fcitx5-im fcitx5-chinese-addons \
+ark p7zip unrar unarchiver kdesvn fcitx5-im fcitx5-chinese-addons \
 ttf-dejavu ttf-liberation noto-fonts-cjk noto-fonts-emoji \
 adobe-source-code-pro-fonts \
 adobe-source-sans-pro-fonts adobe-source-serif-pro-fonts \
@@ -104,6 +114,7 @@ arch-chroot /mnt
 
 ```bash
 vim /etc/locale.gen
+---------------------
 
 # 去注释掉这两行
 en_US.UTF-8 UTF-8
@@ -111,8 +122,6 @@ zh_CN.UTF-8 UTF-8
 
 # 重新生成 Locale
 locale-gen
-
-export LANG=en_US.UTF-8
 
 # 设置可输入中文的英文环境
 echo LANG=en_US.UTF-8 > /etc/locale.conf
@@ -131,7 +140,7 @@ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ### c. hostname (主机名设置)
 
 ```bash
-echo arch > /etc/hostname # arch 可随意，设置喜欢的名字即可
+echo archlinux > /etc/hostname # archlinux 可随意，设置喜欢的名字即可
 ```
 
 ### d. network (使用 `networkmanager` 管理网络连接)
@@ -153,8 +162,8 @@ passwd ghlandy
 mkinitcpio.conf
 
 ```bash
-# 编辑 /etc/mkinitcpio.conf
 vim /etc/mkinitcpio.conf
+--------------------------
 
 # 添加 keyboard keymap encrypt lvm2
 HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)
@@ -168,6 +177,7 @@ blkid
 
 # 编辑 /etc/default/grub
 vim /etc/default/grub
+-----------------------
 
 # 添加并替换 device-UUID
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=device-UUID:archlvm root=/dev/ArchGroup/root"
@@ -198,7 +208,6 @@ vim /etc/grub.d/40_custom
 # set superusers=user
 # password_pbkdf2 user grub.pbkdf2.sha512.10000.55B982FA18876B07A6C637ABBEDFD172C75061A6AD1B9E6BAFEE1EF1D41E5DC3017AE885CE0BA0786A87C4FBF21F17A1B1D54B033D851C4B290290D8322F0CFC.05DB77C69A28B0989E5B5235B28261EE7C83F486094DCF97F64EBD353CCAD5C5C1DAE03419D39D0D5B20DDFC930B6AFE3AB2177B5C7F341CC5CB23C0458D6386
 
-
 # 生成 grub 启动菜单
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
@@ -207,6 +216,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ```bash
 vim /etc/environment
+----------------------
 
 # 添加如下内容
 GTK_IM_MODULE=fcitx
@@ -220,6 +230,7 @@ XMODIFIERS=@im=fictx
 # 启用 sddm breeze 主题
 cp -r /usr/lib/sddm/sddm.conf.d /etc
 vim /etc/sddm.conf.d/default.conf
+-----------------------------------
 
 [Theme]
 Current=breeze
@@ -245,6 +256,8 @@ reboot
 >
 > HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink
 >
-> 把 Lucida Sans Unicode, Microsoft Sans Serif, Tahoma 三条记录中的 SIMSUN.TTC,SimSun 改为 SourceHanSerif-Medium.ttc,SimSun
+> 把 Lucida Sans Unicode, Microsoft Sans Serif, Tahoma 三条记录中的 SIMSUN.TTC,SimSun
+>
+> 改为 SourceHanSerif-Medium.ttc,SimSun
 >
 > 关掉注册表，重启微信即可

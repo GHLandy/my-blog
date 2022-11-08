@@ -215,7 +215,8 @@ blockquote > ol {
   list-style-position: inside;
 }
 
-blockquote code[class*='language-'] {
+blockquote code[class*='language-'],
+blockquote p {
   word-break: break-all;
 }
 

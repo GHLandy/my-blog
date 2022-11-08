@@ -9,13 +9,13 @@
   },
   "license": "MIT",
   "scripts": {
+    "prepare": "husky install",
+    "prettier": "prettier -c -w \"**/*.{js,jsx,ts,tsx,vue,html,css,less,sass,scss,json,md,mdx}\"",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "prettier": "prettier -c -w \"**/*.{js,jsx,ts,tsx,vue,html,css,less,sass,scss,json,md,mdx}\"",
-    "prepare": "husky install"
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "gatsby": "^4.3.0",
