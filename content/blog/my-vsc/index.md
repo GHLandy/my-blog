@@ -11,6 +11,7 @@ description: 记录一下我 VS Code 的配置
 > Linux: `~/.config/Code/User/settings.json`
 
 ```json
+{
   "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -44,6 +45,7 @@ description: 记录一下我 VS Code 的配置
   "workbench.colorTheme": "Noctis",
   "workbench.iconTheme": "file-icons",
   "workbench.sideBar.location": "left"
+}
 ```
 
 ## jsts.code-snippets
@@ -189,10 +191,10 @@ description: 记录一下我 VS Code 的配置
     "file-icons.file-icons",
     "gruntfuggly.todo-tree",
     "irongeek.vscode-env",
-    "johnsoncodehk.volar",
     "liviuschera.noctis",
     "mgmcdermott.vscode-language-babel",
-    "mhutchie.git-graph"
+    "mhutchie.git-graph",
+    "Vue.volar"
   ]
 }
 ```
