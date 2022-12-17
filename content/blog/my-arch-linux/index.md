@@ -84,7 +84,7 @@ bash-completion vim git curl openssl openssh man-db man-pages \
 networkmanager networkmanager-openvpn exfat-utils ntfs-3g bluez-utils pulseaudio-bluetooth \
 xf86-video-intel xf86-video-nouveau xf86-input-libinput \
 plasma konsole dolphin kdegraphics-thumbnailers qt5-imageformats kate okular gwenview \
-ark p7zip unrar unarchiver kdesvn fcitx5-im fcitx5-chinese-addons \
+ark filezilla p7zip unrar unarchiver kdesvn fcitx5-im fcitx5-chinese-addons \
 ttf-dejavu ttf-liberation noto-fonts-cjk noto-fonts-emoji \
 adobe-source-code-pro-fonts \
 adobe-source-sans-pro-fonts adobe-source-serif-pro-fonts \
