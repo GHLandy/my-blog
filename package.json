@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "prettier": "prettier -c -w \"**/*.{js,jsx,ts,tsx,vue,html,css,less,sass,scss,json,md,mdx}\"",
+    "prettier": "prettier -c -w .",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "gatsby develop",
