@@ -20,21 +20,22 @@ description: 本文记录一下关于 Manjaro 相关的备忘，以备不时之�
 ## 4、安装后
 
 ```bash
-# 卸载不要的
-sudo pacman -Rnus gnome-calculator gnome-tour gnome-tweaks gnome-user-docs \
-gnome-weather lollypop manjaro-hello totem
-
-# 安装需要的
-sudo pacman -S base-devel filezilla gnome-shell-extension-appindicator vim \
-ibus-libpinyin  thunderbird jdk17-openjdk dbeaver networkmanager-openvpn neovim \
-yay p7zip unrar wqy-microhei xorg-xwininfo noto-fonts-cjk noto-fonts-emoji \
-adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts \
-
 # 设置显示
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.calendar show-weekdate true
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
+
+# 卸载不要的
+sudo pacman -Rnus gnome-calculator gnome-tour gnome-tweaks gnome-user-docs \
+gnome-weather ibus lollypop manjaro-hello totem
+
+# 安装需要的
+sudo pacman -S fcitx5-im fcitx5-chinese-addons vim neovim filezilla base-devel  \
+gnome-shell-extension-appindicator libappindicator-gtk2 libappindicator-gtk3 \
+thunderbird jdk17-openjdk dbeaver networkmanager-openvpn \
+yay p7zip unrar wqy-microhei xorg-xwininfo noto-fonts-cjk noto-fonts-emoji \
+adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts \
 
 # 安装 AUR 的软件
 yay -S google-chrome
@@ -70,5 +71,15 @@ echo LC_CTYPE=zh_CN.UTF-8 >> /etc/locale.conf
 
 > 此处是需要设置一个可以输入中文的英文环境 <br />
 > 关于 `locale` 的设置可以参考 [locale 的设定及 LANG、LC_CTYPE、LC_ALL 环境变量](https://www.cnblogs.com/xlmeng1988/archive/2013/01/16/locale.html)
+
+fcitx 需要这只环境变量
+
+```bash
+sudo vim /etc/environment
+
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+```
 
 ## 重启
