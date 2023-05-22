@@ -25,6 +25,16 @@ npx husky add .husky/pre-commit "npx lint-staged"
 
 对于使用 `vue-cli` 模板的项目，它会默认下载 `yorkie`, 但是对于使用 pnpm 时，无法正确生成 `git hooks`
 
+> 若是使用了 `nvm` 之类的来安装 `node` 的话，在 `VS Code` 中提交代码时会找不到 `npx` 命令，需要在家目录添加 `~/.huskyrc` 文件：
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+[ -f ".nvmrc"] && nvm use
+```
+
 ## READ MORE
 
 - [Why husky has dropped conventional JS config](https://blog.typicode.com/husky-git-hooks-javascript-config/)
