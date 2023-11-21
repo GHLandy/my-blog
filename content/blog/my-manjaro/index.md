@@ -4,7 +4,7 @@ date: '2023-04-28T02:57:07.569Z'
 description: 本文记录一下关于 Manjaro 相关的备忘，以备不时之需。
 ---
 
-## 1、下载 Manjaro Gnome minimal
+## 1、下载 Manjaro KDE minimal
 
 ## 2、安装中先全部设置 en_US.UTF-8
 
@@ -20,22 +20,14 @@ description: 本文记录一下关于 Manjaro 相关的备忘，以备不时之�
 ## 4、安装后
 
 ```bash
-# 设置显示
-gsettings set org.gnome.desktop.interface show-battery-percentage true
-gsettings set org.gnome.desktop.calendar show-weekdate true
-gsettings set org.gnome.desktop.interface clock-show-weekday true
-gsettings set org.gnome.desktop.interface clock-show-seconds true
-
 # 卸载不要的
-sudo pacman -Rnus gnome-calculator gnome-tour gnome-tweaks gnome-user-docs \
-gnome-weather ibus lollypop manjaro-hello totem
+sudo pacman -Rnus kdeconnect khelpcenter yakuake manjaro-hello vi nano nano-syntax-highlighting
 
 # 安装需要的
-sudo pacman -S fcitx5-im fcitx5-chinese-addons vim neovim filezilla base-devel  \
-gnome-shell-extension-appindicator libappindicator-gtk2 libappindicator-gtk3 \
-thunderbird jdk17-openjdk dbeaver networkmanager-openvpn \
-yay p7zip unrar wqy-microhei xorg-xwininfo noto-fonts-cjk noto-fonts-emoji \
-adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts \
+sudo pacman -S fcitx5-im fcitx5-chinese-addons
+sudo pacman -S vim filezilla base-devel yay
+sudo pacman -S jdk17-openjdk dbeaver kdesvn trojan
+sudo pacman -S noto-fonts-cjk noto-fonts-emoji ttf-liberation adobe-source-han-serif-cn-fonts
 
 # 安装 AUR 的软件
 yay -S google-chrome
@@ -77,8 +69,9 @@ fcitx 需要这只环境变量
 ```bash
 sudo vim /etc/environment
 
-GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
+# 只用设置最后一个，Wayland 下用设置里边选择 fcitx 启动输入法
+# GTK_IM_MODULE=fcitx
+# QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
 ```
 
