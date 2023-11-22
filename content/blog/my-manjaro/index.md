@@ -69,7 +69,7 @@ fcitx 需要这只环境变量
 ```bash
 sudo vim /etc/environment
 
-# 只用设置最后一个，Wayland 下用设置里边选择 fcitx 启动输入法
+# 只用设置最后一个，Wayland 下用设置里边选择 fcitx 启动输入法，https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#KDE_Plasma
 # GTK_IM_MODULE=fcitx
 # QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
